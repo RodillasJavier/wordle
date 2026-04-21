@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import Guesses from "./components/Guesses"
 
 const TARGET_WORD = 'apple';
@@ -60,11 +60,7 @@ function App() {
     rows[submittedGuesses.length] = currentGuess;
   }
 
-  const handleSubmit = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key !== 'Enter') {
-      return;
-    }
-
+  const submitGuess = useCallback(() => {
     if (currentGuess.length !== 5) {
       return;
     }
@@ -76,19 +72,38 @@ function App() {
     
     setSubmittedGuesses([...submittedGuesses, evaluateGuess(currentGuess, TARGET_WORD)]);
     setCurrentGuess("");
-  }
+  }, [currentGuess, submittedGuesses]);
+
+  useEffect(() => {
+    function handleKeyDown (e: KeyboardEvent) {
+      if (e.key === "Enter") {
+        submitGuess();
+        return;
+      }
+
+      if (e.key === "Backspace") {
+        setCurrentGuess((prev) => prev.slice(0, -1));
+        return;
+      }
+
+      if (/^[a-zA-Z]$/.test(e.key)) {
+        setCurrentGuess((prev) => {
+          if (prev.length >= 5) return prev;
+          return prev + e.key.toLowerCase();
+        });
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [submitGuess]);
 
   return (
     <div className="flex flex-col w-full min-h-screen justify-center items-center">
       <Guesses submittedGuesses={submittedGuesses} currentGuess={currentGuess}/>
-
-      <input 
-        value={currentGuess}
-        onChange={(e) => setCurrentGuess(e.target.value)}
-        maxLength={5}
-        className="bg-neutral-300 rounded"
-        onKeyDown={(e) => handleSubmit(e)}
-      />
     </div>
   )
 }
