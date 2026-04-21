@@ -50,16 +50,6 @@ function App() {
   const [submittedGuesses, setSubmittedGuesses] = useState<EvaluatedGuess[]>([]);
   const [currentGuess, setCurrentGuess] = useState('');
 
-  const rows = new Array(6).fill("");
-
-  submittedGuesses.forEach((guess, index) => {
-    rows[index] = guess;
-  });
-
-  if (submittedGuesses.length < rows.length) {
-    rows[submittedGuesses.length] = currentGuess;
-  }
-
   const submitGuess = useCallback(() => {
     if (currentGuess.length !== 5) {
       return;
