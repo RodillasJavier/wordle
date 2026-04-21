@@ -153,10 +153,28 @@ function App() {
     : gameStatus === 'lost'
       ? `Out of guesses. The word was ${answer.toUpperCase()}.`
       : 'Guess the five-letter computer science word.';
+  const footerLinks = [
+    {
+      href: 'https://buymeacoffee.com/rodillasjavier',
+      label: 'Buy Me a Coffee',
+    },
+    {
+      href: 'http://x.com/rodillasjavier',
+      label: 'X',
+    },
+    {
+      href: 'https://www.linkedin.com/in/rodillasjavier/',
+      label: 'LinkedIn',
+    },
+    {
+      href: 'https://github.com/RodillasJavier',
+      label: 'GitHub',
+    },
+  ] as const;
 
   return (
     <div className="flex min-h-screen w-full items-center justify-center px-4 py-8">
-      <div className="flex w-full max-w-3xl flex-col items-center gap-6">
+      <div className="flex w-full max-w-3xl flex-col items-center gap-10">
         {/* Header */}
         <div className="flex flex-col items-center gap-2 text-center">
           <h1 className="text-4xl font-black uppercase tracking-[0.3em]">
@@ -182,6 +200,26 @@ function App() {
             New Game
           </button>
         ) : null}
+
+        <footer className="flex flex-col items-center gap-3 text-center">
+          <p className="text-xs font-medium uppercase tracking-[0.2em] text-neutral-500">
+            Support and follow
+          </p>
+
+          <div className="flex flex-wrap min-w-screen items-center justify-center gap-x-12 gap-y-2 text-sm text-neutral-700">
+            {footerLinks.map(({ href, label }) => (
+              <a
+                className="transition hover:text-black hover:underline"
+                href={href}
+                key={href}
+                rel="noreferrer"
+                target="_blank"
+              >
+                {label}
+              </a>
+            ))}
+          </div>
+        </footer>
       </div>
     </div>
   )
