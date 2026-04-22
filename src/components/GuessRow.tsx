@@ -7,7 +7,10 @@ type GuessRowProps = {
 
 function GuessRow({row, evaluatedRow}: GuessRowProps) {
   const letters = [];
+  const tileClassName = "aspect-square w-12.5 h-12.5 rounded flex items-center justify-center";
+  const textClassName = "text-xl font-bold uppercase sm:text-2xl";
 
+  // Previous guesses
   if (evaluatedRow) {
     evaluatedRow.forEach((letter, index) => {
       let bgClass = "bg-neutral-300";
@@ -17,28 +20,32 @@ function GuessRow({row, evaluatedRow}: GuessRowProps) {
       } else if (letter.status === "present") {
         bgClass = "bg-yellow-300";
       } else if (letter.status === "absent") {
-        bgClass = "bg-gray-300";
+        bgClass = "bg-gray-400";
       }
 
       letters.push(
         <div 
-          className={`w-15 h-15 flex items-center justify-center ${bgClass} rounded `}
+          className={`${tileClassName} ${bgClass}`}
           key={index}
         >
-            <p className={`text-2xl font-bold`}>
+            <p className={textClassName}>
               {letter.letter}
             </p>
         </div>
       );
     });
-  } else {
+    
+  }
+
+  // Current guess or empty rows
+  else {
     for (let index = 0; index < 5; index++) {
       const displayRow = row ?? "";
       const letter = displayRow[index] ?? "";
 
       letters.push(
-        <div className="w-15 h-15 flex items-center justify-center bg-neutral-300 rounded" key={index}>
-          <p className="text-2xl font-bold">
+        <div className={`${tileClassName} bg-neutral-300`} key={index}>
+          <p className={textClassName}>
             {letter}
           </p>
         </div>
