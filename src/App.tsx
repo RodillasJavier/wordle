@@ -215,10 +215,10 @@ for (const guess of submittedGuesses) {
 
   return (
     <div className="h-screen w-full overflow-hidden px-3 py-3 sm:min-h-svh sm:h-auto sm:overflow-visible sm:px-6 sm:py-8">
-      <div className="mx-auto flex h-full w-full max-w-md flex-col items-center justify-around gap-4 sm:h-auto sm:max-w-4xl sm:gap-8">
+      <div className="mx-auto flex h-full w-full max-w-sm flex-col items-center justify-around gap-4 sm:h-auto sm:max-w-4xl sm:gap-8">
         {/* Header */}
         <div className="flex w-full flex-col items-center gap-1.5 px-2 text-center sm:gap-2">
-          <h1 className="text-2xl font-black uppercase tracking-wide sm:text-4xl sm:tracking-widest">
+          <h1 className="text-3xl font-black uppercase tracking-wide sm:text-4xl sm:tracking-widest">
             Codle(?)
           </h1>
 
