@@ -7,8 +7,8 @@ type GuessRowProps = {
 
 function GuessRow({row, evaluatedRow}: GuessRowProps) {
   const letters = [];
-  const tileClassName = "aspect-square w-12.5 h-12.5 rounded flex items-center justify-center";
-  const textClassName = "text-xl font-bold uppercase sm:text-2xl";
+  const tileClassName = "flex aspect-square w-full items-center justify-center rounded sm:h-12 sm:w-12";
+  const textClassName = "text-lg font-bold uppercase sm:text-2xl";
 
   // Previous guesses
   if (evaluatedRow) {
@@ -54,7 +54,7 @@ function GuessRow({row, evaluatedRow}: GuessRowProps) {
   }
 
   return(
-    <div className="flex flex-row gap-2 w-full items-center justify-center space-between">
+    <div className="grid w-full grid-cols-5 gap-2">
       {letters}
     </div>
   )
