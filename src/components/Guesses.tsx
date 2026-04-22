@@ -24,7 +24,7 @@ function Guesses({submittedGuesses, currentGuess}: GuessesProps) {
   }
   
   return (
-    <div className="flex flex-col w-3xl items-center justify-between gap-2">
+    <div className="flex w-full max-w-xs flex-col gap-2 sm:max-w-md">
       {rows}
     </div>
   )
