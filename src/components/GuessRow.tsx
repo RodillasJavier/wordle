@@ -54,7 +54,7 @@ function GuessRow({row, evaluatedRow}: GuessRowProps) {
   }
 
   return(
-    <div className="grid w-full grid-cols-5 gap-2">
+    <div className="flex items-center justify-center w-full gap-2">
       {letters}
     </div>
   )
